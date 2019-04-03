@@ -22,8 +22,7 @@ namespace MariaFedele
 
         private void mesaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Mesas.Add(new Mesa_cuadrada());
-            this.salon_selector.Panel2.Controls.Add(Mesas.Last().mesa_PictureBox);
+            
 
         }
 
@@ -42,6 +41,18 @@ namespace MariaFedele
         {
             var res_form = new New_Reserva();
             res_form.Show();
+        }
+
+        private void cuadradaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mesas.Add(new Mesa_cuadrada());
+            this.salon_selector.Panel2.Controls.Add(Mesas.Last().mesa_PictureBox);
+        }
+
+        private void circularToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mesas.Add(new Mesa_circular());
+            this.salon_selector.Panel2.Controls.Add(Mesas.Last().mesa_PictureBox);
         }
     }
 }

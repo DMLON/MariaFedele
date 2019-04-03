@@ -31,9 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mesaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Calendario = new System.Windows.Forms.SplitContainer();
             this.salon_selector = new System.Windows.Forms.SplitContainer();
-            this.reservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuadradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.circularToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Calendario)).BeginInit();
             this.Calendario.Panel1.SuspendLayout();
@@ -63,10 +65,20 @@
             // 
             // mesaToolStripMenuItem
             // 
+            this.mesaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cuadradaToolStripMenuItem,
+            this.circularToolStripMenuItem});
             this.mesaToolStripMenuItem.Name = "mesaToolStripMenuItem";
-            this.mesaToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.mesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mesaToolStripMenuItem.Text = "Mesa";
             this.mesaToolStripMenuItem.Click += new System.EventHandler(this.mesaToolStripMenuItem_Click);
+            // 
+            // reservaToolStripMenuItem
+            // 
+            this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
+            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reservaToolStripMenuItem.Text = "Reserva";
+            this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
             // 
             // Calendario
             // 
@@ -95,12 +107,19 @@
             this.salon_selector.SplitterDistance = 193;
             this.salon_selector.TabIndex = 0;
             // 
-            // reservaToolStripMenuItem
+            // cuadradaToolStripMenuItem
             // 
-            this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
-            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reservaToolStripMenuItem.Text = "Reserva";
-            this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
+            this.cuadradaToolStripMenuItem.Name = "cuadradaToolStripMenuItem";
+            this.cuadradaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cuadradaToolStripMenuItem.Text = "Cuadrada";
+            this.cuadradaToolStripMenuItem.Click += new System.EventHandler(this.cuadradaToolStripMenuItem_Click);
+            // 
+            // circularToolStripMenuItem
+            // 
+            this.circularToolStripMenuItem.Name = "circularToolStripMenuItem";
+            this.circularToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.circularToolStripMenuItem.Text = "Circular";
+            this.circularToolStripMenuItem.Click += new System.EventHandler(this.circularToolStripMenuItem_Click);
             // 
             // Menu_Principal
             // 
@@ -132,6 +151,8 @@
         private System.Windows.Forms.SplitContainer Calendario;
         private System.Windows.Forms.SplitContainer salon_selector;
         private System.Windows.Forms.ToolStripMenuItem reservaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cuadradaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem circularToolStripMenuItem;
     }
 }
 

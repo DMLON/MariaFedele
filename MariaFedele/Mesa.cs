@@ -27,10 +27,9 @@ namespace MariaFedele
                 _mesa_PictureBox.MouseDown += mesa_PictureBox_MouseDown;
                 _mesa_PictureBox.MouseMove += mesa_PictureBox_MouseMove;
                 _mesa_PictureBox.MouseUp += mesa_PictureBox_MouseUp;
+                _mesa_PictureBox.MouseHover += mesa_PictureBox_MouseHover;
             }
         }
-        public Bitmap bitmap;
-
         protected bool posSet;
         protected Point _posicion;
         public Point posicion {
@@ -63,28 +62,15 @@ namespace MariaFedele
         public Mesa(SplitterPanel contenedor) : this()
         {
             posicion = new Point(contenedor.Location.X + 20, contenedor.Location.Y + 20);
-            mesa_PictureBox = new PictureBox
-            {
-                Image = bitmap,
-                Location = posicion,
-                Size = tam
-            };
+
         }
         public Mesa()
         {
             tamSet = posSet = false;
-            bitmap = null;
-            tam = new Size(20, 20);
+            tam = new Size(50, 50);
             tamSet = true;
             posicion = new Point(20, 20);
             posSet = true;
-            mesa_PictureBox = new PictureBox
-            {
-                Image = bitmap,
-                Location = posicion,
-                Size = tam
-            };
-           
         }
         #endregion
 
@@ -99,27 +85,71 @@ namespace MariaFedele
         //----------------------Eventos para mouse
         //Se mueve al arrastrar
         #region MouseEvents
-        public bool WorkAble;
+        public bool WorkAble_pos;
+        public bool WorkAble_size;
         protected Point lastPoint { get; set; }
         protected void mesa_PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            WorkAble = true;
-            lastPoint = new Point(e.X, e.Y);
+            if (mesa_PictureBox.Cursor == Cursors.Arrow)
+            {
+                WorkAble_pos = true;
+                lastPoint = new Point(e.X, e.Y);
+                WorkAble_size = false;
+            }
+            else if (mesa_PictureBox.Cursor == Cursors.SizeWE || mesa_PictureBox.Cursor == Cursors.SizeNS)
+            {
+                WorkAble_size = true;
+            }
         }
 
         protected void mesa_PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (WorkAble)
+            if (WorkAble_pos)
             {
                 posicion = new Point((posicion.X + e.X - lastPoint.X), (posicion.Y + e.Y - lastPoint.Y));
                 mesa_PictureBox.Invalidate();
             }
+            else
+            {
+                var eMouse = mesa_PictureBox.PointToClient(Cursor.Position);
+                if (Math.Abs(eMouse.X - mesa_PictureBox.Width) <= 5 || Math.Abs(eMouse.X) <= 5)
+                {
+                    mesa_PictureBox.Cursor = Cursors.SizeWE;
+                }
+                else if (Math.Abs(eMouse.Y - mesa_PictureBox.Height) <= 5 || Math.Abs(eMouse.Y) <= 5)
+                {
+                    mesa_PictureBox.Cursor = Cursors.SizeNS;
+                }
+                else
+                    mesa_PictureBox.Cursor = Cursors.Arrow;
+            }
+            //Resize con mouse VER
+            //if (WorkAble_size)
+            //{
+            //    var eMouse_abs = mesa_PictureBox.Parent.PointToClient(Cursor.Position);
+            //    if (mesa_PictureBox.Cursor == Cursors.SizeWE)
+            //    {
+            //        mesa_PictureBox.Size = new Size(mesa_PictureBox.Width -e.X, mesa_PictureBox.Height);
+            //        mesa_PictureBox.Invalidate();
+            //    }
+            //    else if (mesa_PictureBox.Cursor == Cursors.SizeNS)
+            //    {
+            //        mesa_PictureBox.Size = new Size(mesa_PictureBox.Width, mesa_PictureBox.Height - eMouse_abs.Y);
+            //        mesa_PictureBox.Invalidate();
+            //    }
+            //}
         }
 
         protected void mesa_PictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            WorkAble = false;
+            WorkAble_pos = false;
+            WorkAble_size = false;
             lastPoint = new Point(e.X, e.Y);
+        }
+
+        protected void mesa_PictureBox_MouseHover(object sender, EventArgs e)
+        {
+            
         }
 
         #endregion
@@ -128,16 +158,19 @@ namespace MariaFedele
 
     }
 
-    public class Mesa_cuadrada : Mesa{
+    public class Mesa_cuadrada : Mesa
+    {
         public Mesa_cuadrada() : base()
         {
-            bitmap = new Bitmap("MesaCuadradaV2.png");
             mesa_PictureBox = new PictureBox
             {
-                Image = bitmap,
                 Location = posicion,
                 Size = tam
             };
+
+            mesa_PictureBox.Image = Image.FromFile("MesaCuadradaV2.png");
+            mesa_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
         }
     }
 
@@ -145,13 +178,15 @@ namespace MariaFedele
     {
         public Mesa_circular() : base()
         {
-            bitmap = new Bitmap("MesaCirc.png");
             mesa_PictureBox = new PictureBox
             {
-                Image = bitmap,
                 Location = posicion,
                 Size = tam
             };
+
+            mesa_PictureBox.Image = Image.FromFile("MesaCirc.png");
+            mesa_PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+
         }
     }
 
