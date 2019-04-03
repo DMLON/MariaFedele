@@ -12,9 +12,11 @@ namespace MariaFedele
     {
         Antipasto, PrimerPlato, SegundoPlato, Postre
     }
-
+    //https://www.youtube.com/watch?v=Yb7R7Dr2DBk
+    //https://github.com/DMLON/MariaFedele
     public class Mesa
     {
+        public string nombre;
         protected PictureBox _mesa_PictureBox;
         public PictureBox mesa_PictureBox {
             get {
@@ -158,10 +160,12 @@ namespace MariaFedele
         public DateTime fecha;
         public int personas;
         public string comentarios;
-        public Reserva(DateTime fecha, int personas, string comentarios) {
+        public string persona;
+        public Reserva(DateTime fecha, int personas, string comentarios,string persona) {
             this.fecha = fecha;
             this.personas = personas;
             this.comentarios = comentarios;
+            this.persona = persona;
         }
     }
 

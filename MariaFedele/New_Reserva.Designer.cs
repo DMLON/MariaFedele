@@ -36,8 +36,8 @@
             this.b_aceptar = new System.Windows.Forms.Button();
             this.b_cancelar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.TB_comentarios = new System.Windows.Forms.RichTextBox();
+            this.TB_personas = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // fechaReserva
@@ -110,14 +110,6 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Comentarios";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 80);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 9;
-            // 
             // TB_comentarios
             // 
             this.TB_comentarios.Location = new System.Drawing.Point(103, 110);
@@ -126,13 +118,20 @@
             this.TB_comentarios.TabIndex = 10;
             this.TB_comentarios.Text = "";
             // 
+            // TB_personas
+            // 
+            this.TB_personas.Location = new System.Drawing.Point(103, 80);
+            this.TB_personas.Name = "TB_personas";
+            this.TB_personas.Size = new System.Drawing.Size(200, 20);
+            this.TB_personas.TabIndex = 11;
+            // 
             // New_Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 241);
+            this.Controls.Add(this.TB_personas);
             this.Controls.Add(this.TB_comentarios);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.b_cancelar);
             this.Controls.Add(this.b_aceptar);
@@ -159,7 +158,7 @@
         private System.Windows.Forms.Button b_aceptar;
         private System.Windows.Forms.Button b_cancelar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RichTextBox TB_comentarios;
+        private System.Windows.Forms.TextBox TB_personas;
     }
 }

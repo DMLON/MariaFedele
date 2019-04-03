@@ -13,7 +13,7 @@ namespace MariaFedele
     public partial class Menu_Principal : Form
     {
         public List<Mesa> Mesas;
-
+        public static List<Reserva> reservas;
 
         public Menu_Principal()
         {
@@ -34,6 +34,7 @@ namespace MariaFedele
 
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
+            reservas = new List<Reserva>();
             Mesas = new List<Mesa>();
         }
 

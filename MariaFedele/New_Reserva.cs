@@ -13,8 +13,6 @@ namespace MariaFedele
     public partial class New_Reserva : Form
     {
 
-        public List<Mesa> Mesas;
-
 
         public New_Reserva()
         {
@@ -23,7 +21,7 @@ namespace MariaFedele
 
         private void Tests_Load(object sender, EventArgs e)
         {
-            Mesas = new List<Mesa>();
+            
         }
 
         private void b_cancelar_Click(object sender, EventArgs e)
@@ -33,7 +31,8 @@ namespace MariaFedele
 
         private void b_aceptar_Click(object sender, EventArgs e)
         {
-
+            Menu_Principal.reservas.Add(new Reserva(this.fechaReserva.Value, Convert.ToInt32(this.TB_personas.Text), this.TB_comentarios.Text, this.TB_Persona.Text));
+            this.Close();
         }
     }
 }
