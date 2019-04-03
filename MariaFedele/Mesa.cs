@@ -10,64 +10,71 @@ namespace MariaFedele
 {
     public enum Paso_plato
     {
-        Antipasto,PrimerPlato,SegundoPlato,Postre
+        Antipasto, PrimerPlato, SegundoPlato, Postre
     }
 
     public class Mesa
     {
-        public PictureBox mesa_PictureBox { get; set; }
+        protected PictureBox _mesa_PictureBox;
+        public PictureBox mesa_PictureBox {
+            get {
+                return _mesa_PictureBox;
+            }
+            set {
+                _mesa_PictureBox = value;
+                _mesa_PictureBox.MouseDown += mesa_PictureBox_MouseDown;
+                _mesa_PictureBox.MouseMove += mesa_PictureBox_MouseMove;
+                _mesa_PictureBox.MouseUp += mesa_PictureBox_MouseUp;
+            }
+        }
         public Bitmap bitmap;
-        private Point _posicion;
+
+        protected bool posSet;
+        protected Point _posicion;
         public Point posicion {
             get {
                 return _posicion;
             }
             set {
                 _posicion = value;
-                if(tamSet&&posSet) UpdateImg(_tam.Width, _tam.Height, _posicion.X, _posicion.Y);
+                if (tamSet && posSet) UpdateImg(_tam.Width, _tam.Height, _posicion.X, _posicion.Y);
             }
         }
-        private Size _tam;
+
+        protected bool tamSet;
+        protected Size _tam;
         public Size tam {
             get {
                 return _tam;
             }
             set {
                 _tam = value;
-                if(tamSet && posSet) UpdateImg(_tam.Width, _tam.Height, _posicion.X, _posicion.Y);
+                if (tamSet && posSet) UpdateImg(_tam.Width, _tam.Height, _posicion.X, _posicion.Y);
             }
         }
+
         public Paso paso { get; set; }
-        private bool tamSet;
-        private bool posSet;
         public List<Reserva> reservas { get; set; }
         public List<Bebida> bebidas { get; set; }
-        public Mesa(SplitterPanel contenedor)
+
+        #region Constructores
+        public Mesa(SplitterPanel contenedor) : this()
         {
-            tamSet = posSet = false;
-            bitmap = new Bitmap("MesaCuad.png");
-            tam = new Size(20, 20);
-            tamSet = true;
-            posicion = new Point(contenedor.Location.X+20, contenedor.Location.Y+20);
-            posSet = true;
+            posicion = new Point(contenedor.Location.X + 20, contenedor.Location.Y + 20);
             mesa_PictureBox = new PictureBox
             {
                 Image = bitmap,
                 Location = posicion,
                 Size = tam
             };
-            mesa_PictureBox.MouseDown += mesa_PictureBox_MouseDown;
-            mesa_PictureBox.MouseMove += mesa_PictureBox_MouseMove;
-            mesa_PictureBox.MouseUp += mesa_PictureBox_MouseUp;
         }
-
         public Mesa()
         {
             tamSet = posSet = false;
-            bitmap = new Bitmap("MesaCuad.png");
+            bitmap = null;
             tam = new Size(20, 20);
             tamSet = true;
-            posicion = new Point( 20, 20);
+            posicion = new Point(20, 20);
             posSet = true;
             mesa_PictureBox = new PictureBox
             {
@@ -75,51 +82,75 @@ namespace MariaFedele
                 Location = posicion,
                 Size = tam
             };
-            mesa_PictureBox.MouseDown += mesa_PictureBox_MouseDown;
-            mesa_PictureBox.MouseMove += mesa_PictureBox_MouseMove;
-            mesa_PictureBox.MouseUp += mesa_PictureBox_MouseUp;
+           
         }
+        #endregion
 
-
-        private void UpdateImg(int width, int height,int x,int y)
+        protected void UpdateImg(int width, int height, int x, int y)
         {
-       
-            mesa_PictureBox.Location = new Point(posicion.X,posicion.Y);
+
+            mesa_PictureBox.Location = new Point(posicion.X, posicion.Y);
             mesa_PictureBox.Size = new Size(tam.Width, tam.Height);
         }
 
+
         //----------------------Eventos para mouse
+        //Se mueve al arrastrar
+        #region MouseEvents
         public bool WorkAble;
-        private Point lastPoint { get; set; }
-        private Point choosingPoint { get; set; }
-        
-        private void mesa_PictureBox_MouseDown(object sender, MouseEventArgs e)
+        protected Point lastPoint { get; set; }
+        protected void mesa_PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             WorkAble = true;
-            choosingPoint = new Point(e.X, e.Y);
-            lastPoint= new Point(e.X, e.Y);
+            lastPoint = new Point(e.X, e.Y);
         }
 
-        private void mesa_PictureBox_MouseMove(object sender, MouseEventArgs e)
+        protected void mesa_PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (WorkAble)
             {
                 posicion = new Point((posicion.X + e.X - lastPoint.X), (posicion.Y + e.Y - lastPoint.Y));
-                choosingPoint = e.Location;
                 mesa_PictureBox.Invalidate();
             }
         }
 
-        private void mesa_PictureBox_MouseUp(object sender, MouseEventArgs e)
+        protected void mesa_PictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             WorkAble = false;
             lastPoint = new Point(e.X, e.Y);
         }
 
+        #endregion
 
 
 
+    }
 
+    public class Mesa_cuadrada : Mesa{
+        public Mesa_cuadrada() : base()
+        {
+            bitmap = new Bitmap("MesaCuadradaV2.png");
+            mesa_PictureBox = new PictureBox
+            {
+                Image = bitmap,
+                Location = posicion,
+                Size = tam
+            };
+        }
+    }
+
+    public class Mesa_circular : Mesa
+    {
+        public Mesa_circular() : base()
+        {
+            bitmap = new Bitmap("MesaCirc.png");
+            mesa_PictureBox = new PictureBox
+            {
+                Image = bitmap,
+                Location = posicion,
+                Size = tam
+            };
+        }
     }
 
     public class Reserva

@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace MariaFedele
 {
-    public partial class Tests : Form
+    public partial class New_Reserva : Form
     {
 
         public List<Mesa> Mesas;
 
 
-        public Tests()
+        public New_Reserva()
         {
             InitializeComponent();
         }
@@ -26,10 +26,14 @@ namespace MariaFedele
             Mesas = new List<Mesa>();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void b_cancelar_Click(object sender, EventArgs e)
         {
-            Mesas.Add(new Mesa());
-            this.Controls.Add(Mesas.Last().mesa_PictureBox);
+            this.Close();
+        }
+
+        private void b_aceptar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
