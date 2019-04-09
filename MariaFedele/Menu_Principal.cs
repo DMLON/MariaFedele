@@ -12,7 +12,7 @@ namespace MariaFedele
 {
     public partial class Menu_Principal : Form
     {
-        public List<Mesa> Mesas;
+        public static List<Mesa> Mesas;
         public static List<Reserva> reservas;
 
         public Menu_Principal()
@@ -53,6 +53,23 @@ namespace MariaFedele
         {
             Mesas.Add(new Mesa_circular());
             this.salon_selector.Panel2.Controls.Add(Mesas.Last().mesa_PictureBox);
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reservasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            reservas.Add(new Reserva(new DateTime(2019, 4, 9, 19, 00, 00), 5, "", "Pedro"));
+            reservas.Add(new Reserva(new DateTime(2019, 4, 9, 19, 35, 00), 5, "QE", "Juan"));
+            reservas.Add(new Reserva(new DateTime(2019, 4, 10, 19, 30, 00), 5, "AS", "Manuel"));
+            reservas.Add(new Reserva(new DateTime(2019, 4, 10, 19, 40, 00), 5, "N", "Sol"));
+            reservas.Add(new Reserva(new DateTime(2019, 4, 13, 21, 30, 00), 5, "D", "Damian"));
+            reservas.Add(new Reserva(new DateTime(2019, 4, 15, 22, 00, 00), 5, "ASS", "Batatin"));
+            var menu_reservas = new Reservas(reservas);
+            menu_reservas.Show();
         }
     }
 }

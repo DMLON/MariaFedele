@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
 
 namespace MariaFedele
 {
@@ -14,8 +15,17 @@ namespace MariaFedele
     }
     //https://www.youtube.com/watch?v=Yb7R7Dr2DBk
     //https://github.com/DMLON/MariaFedele
-    public class Mesa
+
+    //public interface IMesa {
+    //    List<Reserva> reservas { get; set; }
+    //    List<Bebida> bebidas { get; set; }
+    //}
+
+    public class Mesa :IDisposable //: IMesa
     {
+        public List<Reserva> reservas { get; set; }
+        public List<Bebida> bebidas { get; set; }
+
         public string nombre;
         protected PictureBox _mesa_PictureBox;
         public PictureBox mesa_PictureBox {
@@ -27,9 +37,10 @@ namespace MariaFedele
                 _mesa_PictureBox.MouseDown += mesa_PictureBox_MouseDown;
                 _mesa_PictureBox.MouseMove += mesa_PictureBox_MouseMove;
                 _mesa_PictureBox.MouseUp += mesa_PictureBox_MouseUp;
-                _mesa_PictureBox.MouseHover += mesa_PictureBox_MouseHover;
+                _mesa_PictureBox.ContextMenuStrip = menu.menu;
             }
         }
+
         protected bool posSet;
         protected Point _posicion;
         public Point posicion {
@@ -55,8 +66,8 @@ namespace MariaFedele
         }
 
         public Paso paso { get; set; }
-        public List<Reserva> reservas { get; set; }
-        public List<Bebida> bebidas { get; set; }
+ 
+        public Mesa_Menu menu { get; set; }
 
         #region Constructores
         public Mesa(SplitterPanel contenedor) : this()
@@ -66,6 +77,9 @@ namespace MariaFedele
         }
         public Mesa()
         {
+            reservas = new List<Reserva>();
+            bebidas = new List<Bebida>();
+            menu = new Mesa_Menu(this);
             tamSet = posSet = false;
             tam = new Size(50, 50);
             tamSet = true;
@@ -82,12 +96,17 @@ namespace MariaFedele
         }
 
 
+
+
         //----------------------Eventos para mouse
         //Se mueve al arrastrar
         #region MouseEvents
         public bool WorkAble_pos;
         public bool WorkAble_size;
         protected Point lastPoint { get; set; }
+
+
+
         protected void mesa_PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (mesa_PictureBox.Cursor == Cursors.Arrow)
@@ -147,14 +166,14 @@ namespace MariaFedele
             lastPoint = new Point(e.X, e.Y);
         }
 
-        protected void mesa_PictureBox_MouseHover(object sender, EventArgs e)
-        {
-            
-        }
-
         #endregion
 
-
+        public void Dispose()
+        {
+            Menu_Principal.Mesas.Remove(this);
+            _mesa_PictureBox.Dispose();
+            GC.SuppressFinalize(this);
+        }
 
     }
 
@@ -192,10 +211,10 @@ namespace MariaFedele
 
     public class Reserva
     {
-        public DateTime fecha;
-        public int personas;
-        public string comentarios;
-        public string persona;
+        public DateTime fecha { get; set; }
+        public int personas { get; set; }
+        public string comentarios { get; set; }
+        public string persona { get; set; }
         public Reserva(DateTime fecha, int personas, string comentarios,string persona) {
             this.fecha = fecha;
             this.personas = personas;
@@ -206,8 +225,8 @@ namespace MariaFedele
 
     public class Bebida
     {
-        public string nombre;
-        public int precio;
+        public string nombre { get; set; }
+        public int precio { get; set; }
         public Bebida(string nombre,int precio)
         {
             this.nombre = nombre;
