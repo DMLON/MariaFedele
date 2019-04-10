@@ -38,13 +38,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TB_comentarios = new System.Windows.Forms.RichTextBox();
             this.TB_personas = new System.Windows.Forms.TextBox();
+            this.horaComboBox = new System.Windows.Forms.ComboBox();
+            this.Hora = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // fechaReserva
             // 
+            this.fechaReserva.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.fechaReserva.Location = new System.Drawing.Point(103, 50);
             this.fechaReserva.Name = "fechaReserva";
-            this.fechaReserva.Size = new System.Drawing.Size(200, 20);
+            this.fechaReserva.Size = new System.Drawing.Size(121, 20);
             this.fechaReserva.TabIndex = 0;
             // 
             // label1
@@ -59,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 80);
+            this.label2.Location = new System.Drawing.Point(18, 110);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 2;
@@ -78,12 +81,12 @@
             // 
             this.TB_Persona.Location = new System.Drawing.Point(103, 20);
             this.TB_Persona.Name = "TB_Persona";
-            this.TB_Persona.Size = new System.Drawing.Size(200, 20);
+            this.TB_Persona.Size = new System.Drawing.Size(121, 20);
             this.TB_Persona.TabIndex = 5;
             // 
             // b_aceptar
             // 
-            this.b_aceptar.Location = new System.Drawing.Point(72, 207);
+            this.b_aceptar.Location = new System.Drawing.Point(21, 260);
             this.b_aceptar.Name = "b_aceptar";
             this.b_aceptar.Size = new System.Drawing.Size(75, 23);
             this.b_aceptar.TabIndex = 6;
@@ -93,7 +96,7 @@
             // 
             // b_cancelar
             // 
-            this.b_cancelar.Location = new System.Drawing.Point(185, 207);
+            this.b_cancelar.Location = new System.Drawing.Point(149, 260);
             this.b_cancelar.Name = "b_cancelar";
             this.b_cancelar.Size = new System.Drawing.Size(75, 23);
             this.b_cancelar.TabIndex = 7;
@@ -104,7 +107,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 110);
+            this.label4.Location = new System.Drawing.Point(18, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 8;
@@ -112,24 +115,43 @@
             // 
             // TB_comentarios
             // 
-            this.TB_comentarios.Location = new System.Drawing.Point(103, 110);
+            this.TB_comentarios.Location = new System.Drawing.Point(103, 140);
             this.TB_comentarios.Name = "TB_comentarios";
-            this.TB_comentarios.Size = new System.Drawing.Size(200, 76);
+            this.TB_comentarios.Size = new System.Drawing.Size(121, 76);
             this.TB_comentarios.TabIndex = 10;
             this.TB_comentarios.Text = "";
             // 
             // TB_personas
             // 
-            this.TB_personas.Location = new System.Drawing.Point(103, 80);
+            this.TB_personas.Location = new System.Drawing.Point(103, 110);
             this.TB_personas.Name = "TB_personas";
-            this.TB_personas.Size = new System.Drawing.Size(200, 20);
+            this.TB_personas.Size = new System.Drawing.Size(121, 20);
             this.TB_personas.TabIndex = 11;
+            // 
+            // horaComboBox
+            // 
+            this.horaComboBox.FormattingEnabled = true;
+            this.horaComboBox.Location = new System.Drawing.Point(103, 80);
+            this.horaComboBox.Name = "horaComboBox";
+            this.horaComboBox.Size = new System.Drawing.Size(121, 21);
+            this.horaComboBox.TabIndex = 12;
+            // 
+            // Hora
+            // 
+            this.Hora.AutoSize = true;
+            this.Hora.Location = new System.Drawing.Point(18, 80);
+            this.Hora.Name = "Hora";
+            this.Hora.Size = new System.Drawing.Size(30, 13);
+            this.Hora.TabIndex = 13;
+            this.Hora.Text = "Hora";
             // 
             // New_Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 241);
+            this.ClientSize = new System.Drawing.Size(242, 295);
+            this.Controls.Add(this.Hora);
+            this.Controls.Add(this.horaComboBox);
             this.Controls.Add(this.TB_personas);
             this.Controls.Add(this.TB_comentarios);
             this.Controls.Add(this.label4);
@@ -160,5 +182,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox TB_comentarios;
         private System.Windows.Forms.TextBox TB_personas;
+        private System.Windows.Forms.ComboBox horaComboBox;
+        private System.Windows.Forms.Label Hora;
     }
 }

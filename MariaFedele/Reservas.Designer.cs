@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
+            this.Agregar_reserva = new System.Windows.Forms.Button();
             this.Calendario_reservas = new System.Windows.Forms.MonthCalendar();
             this.Grid_reservas = new System.Windows.Forms.DataGridView();
-            this.Agregar_reserva = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -59,6 +59,25 @@
             this.splitContainer1.SplitterDistance = 212;
             this.splitContainer1.TabIndex = 0;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(126, 183);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // Agregar_reserva
+            // 
+            this.Agregar_reserva.Location = new System.Drawing.Point(12, 183);
+            this.Agregar_reserva.Name = "Agregar_reserva";
+            this.Agregar_reserva.Size = new System.Drawing.Size(75, 23);
+            this.Agregar_reserva.TabIndex = 1;
+            this.Agregar_reserva.Text = "Nueva";
+            this.Agregar_reserva.UseVisualStyleBackColor = true;
+            this.Agregar_reserva.Click += new System.EventHandler(this.Agregar_reserva_Click);
+            // 
             // Calendario_reservas
             // 
             this.Calendario_reservas.Location = new System.Drawing.Point(9, 9);
@@ -74,24 +93,6 @@
             this.Grid_reservas.Name = "Grid_reservas";
             this.Grid_reservas.Size = new System.Drawing.Size(584, 450);
             this.Grid_reservas.TabIndex = 0;
-            // 
-            // Agregar_reserva
-            // 
-            this.Agregar_reserva.Location = new System.Drawing.Point(12, 183);
-            this.Agregar_reserva.Name = "Agregar_reserva";
-            this.Agregar_reserva.Size = new System.Drawing.Size(75, 23);
-            this.Agregar_reserva.TabIndex = 1;
-            this.Agregar_reserva.Text = "Nueva";
-            this.Agregar_reserva.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(126, 183);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // Reservas
             // 
